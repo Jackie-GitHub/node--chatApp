@@ -24,9 +24,7 @@ io.on('connection',(socket)=>{
         if (error) {
             return callback(error)
         } 
-        socket.join(user.room);  //can only be used on the server
-        //socket.emit, io.emit, socket.broadcast.emit
-        //io.to.emit, socket.broadcast.to.emit (similar to above, but only emit within the room)
+        socket.join(user.room);  
         socket.emit('message',generateMessage('Welcome!'));
         socket.broadcast.to(user.room).emit('message',generateMessage(`${user.username} has joined!`));
         io.to(user.room).emit('roomData',{
